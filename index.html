@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monday 23 November 2026 — The World in One Image</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1024px;height:1024px}
+  body{background:#faf6ee;color:#191919;font-family:Arial,'Noto Sans',sans-serif;overflow:hidden}
+  .sheet{width:1024px;height:1024px;padding:5px 18px 4px;display:flex;flex-direction:column}
+  .sheet>*{flex:none}
+  .sheet .foot{margin-top:auto}
+  /* ---------- top rule ---------- */
+  .topline{display:flex;justify-content:space-between;align-items:center;
+    border-top:3px solid #191919;border-bottom:1px solid #191919;
+    padding:2px 2px;font-size:9px;letter-spacing:2px;font-weight:700}
+  .topline .hot{color:#a8231a}
+  /* ---------- date masthead ---------- */
+  .mast{text-align:center;padding:3px 0 2px}
+  .mast h1{font-family:Georgia,'Noto Serif',serif;font-size:34px;line-height:1;
+    font-weight:900;letter-spacing:-.6px}
+  .mast .deck{font-family:Georgia,'Noto Serif',serif;font-style:italic;color:#a8231a;
+    font-size:12.5px;line-height:1.35;margin-top:2px}
+  /* ---------- big-number strip ---------- */
+  .nums{display:flex;border-top:2px solid #191919;border-bottom:2px solid #191919;margin-top:3px}
+  .num{flex:1;text-align:center;padding:3px 4px 2px;border-right:1px solid #cfc8b6}
+  .num:last-child{border-right:none}
+  .num .v{font-family:Georgia,'Noto Serif',serif;font-size:22px;font-weight:900;line-height:1;color:#1b2a40}
+  .num .v.r{color:#a8231a}
+  .num .v.g{color:#14665c}
+  .num .k{font-size:7.5px;letter-spacing:.7px;text-transform:uppercase;color:#555;margin-top:3px;line-height:1.25}
+  /* ---------- region ribbon ---------- */
+  .ribbon{display:flex;height:22px;margin-top:3px;border:1px solid #191919;
+    font-size:9px;font-weight:700;letter-spacing:.5px;color:#fff;overflow:hidden}
+  .ribbon div{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+  /* ---------- timeline ---------- */
+  .dayline{margin-top:3px;border:1px solid #191919;padding:2px 10px 2px;background:#f1ebdb}
+  .dayline h2{font-size:9px;letter-spacing:2.2px;color:#a8231a;margin-bottom:1px}
+  .dayline .row{display:flex;justify-content:space-between}
+  .dayline .ev{font-size:9.3px;line-height:1.3;color:#222;flex:1;padding-right:8px}
+  .dayline .ev b{color:#1b2a40}
+  /* ---------- section titles ---------- */
+  .sect{display:flex;align-items:baseline;justify-content:space-between;margin:3px 0 3px;
+    border-bottom:2px solid #191919;padding-bottom:2px}
+  .sect h2{font-size:10px;letter-spacing:2.2px}
+  .sect span{font-size:8.5px;color:#666;letter-spacing:.5px}
+  /* ---------- lead stories ---------- */
+  .leads{display:flex;gap:9px}
+  .lead{flex:1;border:1px solid #191919;background:#fff;display:flex;flex-direction:column}
+  .lead .pic{height:38px;background:#1b2a40;overflow:hidden}
+  .lead .pic svg{width:100%;height:100%;display:block}
+  .lead .txt{padding:4px 8px 5px;flex:1;display:flex;flex-direction:column}
+  .no{display:inline-block;background:#a8231a;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;margin-bottom:3px}
+  .lead h3{font-family:Georgia,'Noto Serif',serif;font-size:15px;line-height:1.14;font-weight:900}
+  .lead p{font-size:10px;line-height:1.36;margin-top:3px;color:#222}
+  .by{font-size:8px;color:#777;margin-top:auto;padding-top:4px;letter-spacing:.4px}
+  .tag{font-size:7px;font-weight:700;letter-spacing:.8px;padding:1px 4px;border:1px solid #999;color:#555;margin-left:4px;vertical-align:2px}
+  .tag.cl{border-color:#a8231a;color:#a8231a}
+  .tag.cf{border-color:#14665c;color:#14665c}
+  .tag.pd{border-color:#c08a1e;color:#8a5f0c}
+  /* ---------- medium stories (illustrated cards) ---------- */
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+  .item{border:1px solid #191919;border-top:3px solid #1b2a40;background:#fff;
+    display:flex;flex-direction:column;overflow:hidden}
+  .item .art{height:22px;overflow:hidden;border-bottom:1px solid #d8d2c2;flex:none}
+  .item .art svg{width:100%;height:100%;display:block}
+  .item .body{padding:3px 7px 3px;display:flex;flex-direction:column;flex:1}
+  .item h3{font-family:Georgia,'Noto Serif',serif;font-size:11px;line-height:1.15;font-weight:900;margin-top:2px}
+  .item p{font-size:9px;line-height:1.24;margin-top:2px;color:#222}
+  .item .by{font-size:7.5px}
+  /* ---------- map + rest of the day ---------- */
+  .lower{display:flex;gap:10px;margin-top:3px}
+  .atlas{width:318px;flex:none;border:1px solid #191919;background:#e9e4d2;padding:5px 7px 4px}
+  .atlas h2{font-size:9px;letter-spacing:1.8px;margin-bottom:3px}
+  .atlas svg{width:100%;height:auto;display:block}
+  .atlas .note{font-size:8px;color:#666;margin-top:3px;line-height:1.35}
+  .rest{flex:1;border:1px solid #191919;background:#fff;padding:5px 9px 5px}
+  .rest h2{font-size:9.5px;letter-spacing:1.6px;color:#a8231a;border-bottom:1px solid #191919;padding-bottom:3px;margin-bottom:3px}
+  .rest .cols{display:flex;gap:14px}
+  .rest .col{flex:1}
+  .rest .li{font-size:9px;line-height:1.2;color:#1c1c1c;padding:1px 0;border-bottom:1px dotted #d8d2c2}
+  .rest .li:last-child{border-bottom:none}
+  .rest .li b{color:#a8231a;font-size:9.5px}
+  .rest .li i{color:#777;font-style:normal;font-size:8.6px}
+  /* ---------- date check ---------- */
+  .check{margin-top:3px;border:2px solid #a8231a;padding:2px 10px 3px;background:#fdf6f4}
+  .check h2{font-size:10px;letter-spacing:1.8px;color:#a8231a}
+  .check .first{font-size:9.5px;line-height:1.3;margin:1px 0 2px;color:#222}
+  .check .left{font-size:9px;line-height:1.4;color:#333}
+  .check .left b{color:#a8231a}
+  /* ---------- footer ---------- */
+  .foot{padding-top:3px;border-top:2px solid #191919}
+  .keys{font-size:8px;line-height:1.35;color:#333}
+  .keys b{letter-spacing:.6px}
+  .sourceline{font-size:7.5px;color:#777;margin-top:1px;line-height:1.3}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="topline">
+    <span>THE WORLD TODAY &nbsp;·&nbsp; ONE DAY IN ONE IMAGE</span>
+    <span class="hot">36 STORIES &nbsp;·&nbsp; 7 REGIONS &nbsp;·&nbsp; WIRES READ TO 21:30 UTC</span>
+    <span>MONDAY EDITION</span>
+  </div>
+
+  <div class="mast">
+    <h1>Monday 23 November 2026</h1>
+    <div class="deck">Huang is back and Nvidia soars 31% &nbsp;·&nbsp; Sea drones sink a Russian warship off Libya &nbsp;·&nbsp; Brussels grounds 404 flights</div>
+  </div>
+
+  <div class="nums">
+    <div class="num"><div class="v g">+31%</div><div class="k">Nvidia in a day</div></div>
+    <div class="num"><div class="v r">700,000</div><div class="k">Russian war dead, est.</div></div>
+    <div class="num"><div class="v">60</div><div class="k">banks off SWIFT, proposed</div></div>
+    <div class="num"><div class="v">404</div><div class="k">flights axed in Belgium</div></div>
+    <div class="num"><div class="v r">&minus;3.3%</div><div class="k">Kospi on Monday</div></div>
+    <div class="num"><div class="v">11</div><div class="k">killed in Dymer</div></div>
+  </div>
+
+  <div class="ribbon">
+    <div style="flex:18;background:#1b2a40">EUROPE&nbsp;18</div>
+    <div style="flex:5;background:#a8231a">ASIA&nbsp;5</div>
+    <div style="flex:5;background:#2e5f8a">AMERICAS&nbsp;5</div>
+    <div style="flex:3;background:#c08a1e">M. EAST&nbsp;3</div>
+    <div style="flex:3;background:#14665c">AFRICA&nbsp;3</div>
+    <div style="flex:0 0 56px;font-size:8px;background:#6b4a8a">OCEANIA&nbsp;1</div>
+    <div style="flex:0 0 48px;font-size:8px;background:#8a5a2e">WORLD&nbsp;1</div>
+  </div>
+
+  <div class="dayline">
+    <h2>THE DAY IN UTC</h2>
+    <div class="row">
+      <div class="ev"><b>02:40</b> Vanuatu M6.5 quake</div>
+      <div class="ev"><b>08:27</b> Tankers mass off Hormuz</div>
+      <div class="ev"><b>10:30</b> Kerch Bridge damage told</div>
+      <div class="ev"><b>11:31</b> Four-way talks offered</div>
+      <div class="ev"><b>13:30</b> Kyiv debris fire, 5 hurt</div>
+      <div class="ev"><b>21:00</b> US close: Nvidia +31%</div>
+    </div>
+  </div>
+
+  <div class="sect"><h2>THE THREE BIGGEST STORIES</h2><span>1–3 · 13 ILLUSTRATED CARDS</span></div>
+  <div class="leads">
+    <div class="lead">
+      <div class="pic"><svg viewBox="0 0 320 96" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="96" fill="#0b1f14"/>
+        <g stroke="#1d4d33" stroke-width="1.5"><path d="M0 20 H90 M0 48 H70 M0 76 H110 M320 14 H250 M320 40 H270 M320 70 H240"/><circle cx="90" cy="20" r="3" fill="#2fbf71"/><circle cx="70" cy="48" r="3" fill="#2fbf71"/><circle cx="110" cy="76" r="3" fill="#2fbf71"/><circle cx="250" cy="14" r="3" fill="#2fbf71"/><circle cx="270" cy="40" r="3" fill="#2fbf71"/><circle cx="240" cy="70" r="3" fill="#2fbf71"/></g>
+        <rect x="128" y="26" width="64" height="44" fill="#123524" stroke="#2fbf71" stroke-width="2"/>
+        <rect x="142" y="40" width="36" height="16" fill="#2fbf71"/>
+        <g stroke="#2fbf71" stroke-width="2"><path d="M138 26 V18 M154 26 V18 M170 26 V18 M138 70 V78 M154 70 V78 M170 70 V78 M128 38 H120 M128 58 H120 M192 38 H200 M192 58 H200"/></g>
+        <polyline points="8,84 60,78 110,70 170,44 230,26 300,8" fill="none" stroke="#76e0a3" stroke-width="4"/>
+        <path d="M300 8 l-16 2 l6 12 Z" fill="#76e0a3"/>
+        <text x="14" y="90" font-family="Arial" font-size="13" font-weight="700" fill="#76e0a3">NVDA +31.5%</text>
+        <text x="218" y="90" font-family="Arial" font-size="11" font-weight="700" fill="#c9e8d4">S&amp;P +4.7%</text>
+      </svg></div>
+      <div class="txt">
+        <div><span class="no">1</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>Huang is back — Nvidia soars 31%</h3>
+        <p>Nvidia&rsquo;s board reinstates <b>Jensen Huang</b> as CEO; the stock jumps 31.5% to $165.05, adding ~$950bn — the biggest one-day gain ever for a US company. S&amp;P +4.7%, Nasdaq +6.5%.</p>
+        <div class="by">REUTERS · AP · MONDAY CLOSE, NEW YORK</div>
+      </div>
+    </div>
+    <div class="lead">
+      <div class="pic"><svg viewBox="0 0 320 96" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="96" fill="#12203a"/>
+        <circle cx="282" cy="18" r="12" fill="#f5e9c8" opacity="0.95"/>
+        <circle cx="282" cy="18" r="17" fill="none" stroke="#f5e9c8" stroke-width="1" opacity="0.35"/>
+        <path d="M0 70 Q80 62 160 70 T320 70 V96 H0 Z" fill="#1d3a5f"/>
+        <path d="M0 78 Q80 72 160 78 T320 78 V96 H0 Z" fill="#24486e"/>
+        <g fill="#7d8590"><path d="M48 66 L56 48 L260 48 L268 60 L260 66 Z"/><rect x="118" y="34" width="54" height="14"/><rect x="140" y="24" width="6" height="12"/><rect x="188" y="30" width="14" height="18"/><rect x="86" y="40" width="20" height="8"/></g>
+        <g fill="#e86a17"><circle cx="196" cy="38" r="15"/><circle cx="212" cy="30" r="11"/><circle cx="182" cy="30" r="9"/></g>
+        <g fill="#f5b301"><circle cx="196" cy="38" r="8"/><circle cx="209" cy="31" r="5"/></g>
+        <g fill="#9a9a9a" opacity="0.8"><circle cx="188" cy="18" r="8"/><circle cx="204" cy="13" r="10"/><circle cx="220" cy="20" r="7"/></g>
+        <g fill="#d8d2c2"><path d="M28 68 L46 68 L41 74 L33 74 Z"/><path d="M256 72 L274 72 L269 78 L261 78 Z"/></g>
+        <path d="M28 71 l-11 -3 M274 75 l11 -3" stroke="#f5e9c8" stroke-width="1.4" opacity="0.7"/>
+      </svg></div>
+      <div class="txt">
+        <div><span class="no">2</span><span class="tag cl">CLAIM</span></div>
+        <h3>Sea drones sink Russian warship off Libya</h3>
+        <p>Zelenskyy says seven Ukrainian sea drones sank the corvette <b>Merkury</b> at Benghazi; the cargo ship Angara and a Ka-27 helicopter were also hit. Attack Sun, confirmed Mon.</p>
+        <div class="by">ZELENSKYY ADDRESS · MONDAY</div>
+      </div>
+    </div>
+    <div class="lead">
+      <div class="pic"><svg viewBox="0 0 320 96" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="96" fill="#1b2a6b"/>
+        <g fill="#f5c518"><circle cx="160" cy="14" r="3"/><circle cx="196" cy="26" r="3"/><circle cx="210" cy="48" r="3"/><circle cx="196" cy="70" r="3"/><circle cx="160" cy="82" r="3"/><circle cx="124" cy="70" r="3"/><circle cx="110" cy="48" r="3"/><circle cx="124" cy="26" r="3"/><circle cx="160" cy="48" r="3" opacity="0"/></g>
+        <g><rect x="120" y="52" width="80" height="34" fill="#e8e2d2"/><rect x="114" y="46" width="92" height="8" fill="#c9bfa8"/><rect x="126" y="62" width="8" height="24" fill="#1b2a40"/><rect x="142" y="62" width="8" height="24" fill="#1b2a40"/><rect x="158" y="62" width="8" height="24" fill="#1b2a40"/><rect x="174" y="62" width="8" height="24" fill="#1b2a40"/><rect x="112" y="86" width="96" height="5" fill="#c9bfa8"/></g>
+        <g stroke="#e0311d" stroke-width="6"><path d="M104 44 L216 92"/></g>
+        <circle cx="160" cy="68" r="52" fill="none" stroke="#e0311d" stroke-width="3" opacity="0.55"/>
+        <text x="14" y="90" font-family="Arial" font-size="11" font-weight="700" fill="#f5c518">60 BANKS · 70+ SHIPS</text>
+      </svg></div>
+      <div class="txt">
+        <div><span class="no">3</span><span class="tag">REPORTED</span></div>
+        <h3>EU proposes 22nd sanctions package</h3>
+        <p>Von der Leyen proposes cutting <b>~60 Russian banks from SWIFT</b>, listing 70+ shadow-fleet ships and curbing crypto and energy services. All 27 states must agree.</p>
+        <div class="by">EUROPEAN COMMISSION · STRASBOURG, MONDAY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect"><h2>MORE OF THE DAY</h2><span>4–13 · EACH WITH ITS OWN DRAWING</span></div>
+  <div class="grid">
+    <div class="item" style="border-top-color:#1b2a40">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#23231f"/>
+        <g fill="#5a5142"><rect x="60" y="8" width="60" height="32" fill="#c9bfa8"/><rect x="70" y="14" width="12" height="9" fill="#5a5142"/><rect x="90" y="14" width="12" height="9" fill="#5a5142"/><rect x="70" y="27" width="12" height="9" fill="#5a5142"/><rect x="90" y="27" width="12" height="9" fill="#f5b301"/></g>
+        <path d="M150 40 L185 4" stroke="#f5b301" stroke-width="3"/>
+        <rect x="180" y="0" width="10" height="8" fill="#f5b301"/>
+        <g fill="#e86a17"><circle cx="105" cy="10" r="5"/><circle cx="112" cy="6" r="3"/></g>
+        <g fill="#8a8a8a" opacity="0.7"><circle cx="96" cy="4" r="5"/><circle cx="108" cy="2" r="6"/></g>
+        <rect x="200" y="30" width="120" height="10" fill="#191919"/>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">4</span><span class="tag">REPORTED</span></div>
+        <h3>Dymer toll reaches 11 as boy is pulled alive</h3>
+        <p>Rescuers free <b>Davyd, 7, after 14 hours</b> under a block hit Sunday; Valentyna, 79, survives 22 hours trapped.</p>
+        <div class="by">UKRAINIAN OFFICIALS · KYIV REGION</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#a8231a">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#1a1a22"/>
+        <g><rect x="52" y="18" width="4" height="14" fill="#e8e2d2"/><ellipse cx="54" cy="15" rx="5" ry="7" fill="#f5b301"/><rect x="104" y="18" width="4" height="14" fill="#e8e2d2"/><ellipse cx="106" cy="15" rx="5" ry="7" fill="#f5b301"/><rect x="156" y="18" width="4" height="14" fill="#e8e2d2"/><ellipse cx="158" cy="15" rx="5" ry="7" fill="#f5b301"/><rect x="208" y="18" width="4" height="14" fill="#e8e2d2"/><ellipse cx="210" cy="15" rx="5" ry="7" fill="#f5b301"/><rect x="260" y="18" width="4" height="14" fill="#e8e2d2"/><ellipse cx="262" cy="15" rx="5" ry="7" fill="#f5b301"/></g>
+        <rect x="0" y="34" width="320" height="6" fill="#2c2c38"/>
+        <text x="150" y="12" font-family="Arial" font-size="10" font-weight="700" fill="#8a8a9a" text-anchor="middle">~700,000</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">5</span><span class="tag">REPORTED</span></div>
+        <h3>700,000 Russian soldiers killed, leak finds</h3>
+        <p>Leaked state statistics point to <b>~700,000 dead</b> since 2022 — the fullest toll yet, Mediazona reports.</p>
+        <div class="by">MEDIAZONA · ROSSTAT LEAK</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#a8231a">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#f3ead9"/>
+        <g stroke="#d8cdb2" stroke-width="1"><path d="M0 10 H320 M0 20 H320 M0 30 H320 M64 0 V40 M160 0 V40 M256 0 V40"/></g>
+        <polyline points="8,6 70,10 130,14 190,24 250,30 312,34" fill="none" stroke="#a8231a" stroke-width="4"/>
+        <g fill="#a8231a"><rect x="30" y="12" width="8" height="10" fill="#a8231a"/><rect x="90" y="14" width="8" height="12"/><rect x="150" y="20" width="8" height="12"/><rect x="210" y="26" width="8" height="10"/><rect x="270" y="30" width="8" height="8"/></g>
+        <text x="14" y="38" font-family="Arial" font-size="10" font-weight="700" fill="#a8231a">KOSPI &minus;3.3%</text>
+        <text x="220" y="38" font-family="Arial" font-size="10" font-weight="700" fill="#14665c">TAIEX +2.2%</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">6</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>Seoul slides 3.3% as Asia splits</h3>
+        <p>Kospi falls to 4,708.54 after sliding almost 6% intraday; TAIEX rallies 2.2%. Tokyo shut for a holiday.</p>
+        <div class="by">MARKET DATA · MONDAY CLOSE, ASIA</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#1b2a40">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#cfe0ee"/>
+        <rect x="0" y="30" width="320" height="10" fill="#8a97a3"/>
+        <g fill="#f5f5f0"><path d="M60 30 L78 12 L150 12 L168 30 Z"/><rect x="96" y="4" width="6" height="10"/><path d="M150 18 L178 18 L168 30 L150 30 Z"/></g>
+        <g fill="#1b2a40"><rect x="118" y="16" width="10" height="4"/><rect x="134" y="16" width="10" height="4"/><circle cx="88" cy="30" r="4"/><circle cx="140" cy="30" r="4"/></g>
+        <g stroke="#a8231a" stroke-width="4"><path d="M200 6 L300 34 M300 6 L200 34"/></g>
+        <text x="236" y="38" font-family="Arial" font-size="9" font-weight="700" fill="#a8231a">404 FLIGHTS OFF</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">7</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>Belgium grounded by general strike</h3>
+        <p>Air controllers join an anti-austerity strike; <b>404 flights axed</b>, 50,000+ passengers hit; airports shut 07:00–21:00.</p>
+        <div class="by">SKEYES · BBC</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#1b2a40">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#12203a"/>
+        <path d="M0 30 Q80 26 160 30 T320 30 V40 H0 Z" fill="#1d3a5f"/>
+        <g fill="#7d8590"><rect x="130" y="6" width="60" height="24" fill="#9aa2ad"/><rect x="142" y="0" width="8" height="8" fill="#c9cdd4"/><rect x="168" y="0" width="8" height="8" fill="#c9cdd4"/><rect x="120" y="14" width="10" height="16" fill="#6b7280"/><rect x="190" y="14" width="10" height="16" fill="#6b7280"/></g>
+        <g fill="#e86a17"><circle cx="150" cy="12" r="4"/><circle cx="170" cy="10" r="3"/></g>
+        <path d="M210 30 L240 14 L270 30 Z" fill="#24486e"/>
+        <rect x="252" y="6" width="4" height="10" fill="#f5b301"/>
+        <text x="14" y="38" font-family="Arial" font-size="10" font-weight="700" fill="#f5e9c8">$4.43bn</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">8</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>ConocoPhillips quits Norway in $4.43bn sale</h3>
+        <p>Sells its Norway business and Teesside stake to Vår Energi; $2.5bn net cash. Ends 50+ years in Norway.</p>
+        <div class="by">CONOCOPHILLIPS · MONDAY</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#1b2a40">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#0d0d1a"/>
+        <g fill="#f5e9c8"><circle cx="20" cy="8" r="1.5"/><circle cx="60" cy="14" r="1.5"/><circle cx="110" cy="6" r="1.5"/><circle cx="200" cy="10" r="1.5"/><circle cx="260" cy="6" r="1.5"/><circle cx="300" cy="16" r="1.5"/></g>
+        <ellipse cx="160" cy="20" rx="120" ry="12" fill="none" stroke="#3a3a5c" stroke-width="1.5"/>
+        <g><rect x="140" y="12" width="40" height="16" fill="#c9cdd4"/><rect x="128" y="16" width="12" height="8" fill="#8a97a3"/><rect x="180" y="16" width="12" height="8" fill="#8a97a3"/><rect x="152" y="6" width="16" height="6" fill="#f5b301"/></g>
+        <g fill="#f5b301"><circle cx="246" cy="30" r="6"/><path d="M246 22 L248 28 L254 28 L249 32 L251 38 L246 34 L241 38 L243 32 L238 28 L244 28 Z"/></g>
+        <text x="14" y="38" font-family="Arial" font-size="9" font-weight="700" fill="#f5e9c8">NUCLEAR IN ORBIT?</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">9</span><span class="tag cl">CLAIM</span></div>
+        <h3>Russia &lsquo;readies nuclear-armed satellite&rsquo;</h3>
+        <p>Moscow is preparing to launch a satellite carrying a nuclear warhead by year&rsquo;s end, German intel assessments say.</p>
+        <div class="by">GERMAN MEDIA · INTEL ASSESSMENTS</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#1b2a40">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#2a2a33"/>
+        <g fill="#191919"><rect x="20" y="22" width="14" height="18"/><rect x="44" y="14" width="18" height="26"/><rect x="72" y="26" width="12" height="14"/><rect x="94" y="18" width="16" height="22"/><rect x="240" y="20" width="16" height="20"/><rect x="266" y="12" width="18" height="28"/><rect x="294" y="24" width="12" height="16"/></g>
+        <g fill="#9a9a9a"><circle cx="140" cy="12" r="3"/><rect x="132" y="12" width="16" height="3"/><circle cx="126" cy="13" r="2.5"/><circle cx="154" cy="13" r="2.5"/><circle cx="180" cy="9" r="3"/><rect x="172" y="9" width="16" height="3"/><circle cx="166" cy="10" r="2.5"/><circle cx="194" cy="10" r="2.5"/></g>
+        <g fill="#e86a17"><circle cx="60" cy="34" r="3"/><circle cx="250" cy="34" r="3"/></g>
+        <text x="120" y="38" font-family="Arial" font-size="10" font-weight="700" fill="#f5e9c8">153 DRONES</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">10</span><span class="tag cl">CLAIM</span></div>
+        <h3>153 drones overnight; Kyiv debris fire</h3>
+        <p>Russia launches 153 drones from Sunday evening; falling debris sparks a Kyiv fire, 5 hurt. Two killed in Slovyansk.</p>
+        <div class="by">UKR GENERAL STAFF · KYIV MAYOR</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#a8231a">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#e8e2d2"/>
+        <g fill="#8a8a8a"><circle cx="70" cy="22" r="12" fill="#6b7280"/><circle cx="70" cy="22" r="6" fill="#e8e2d2"/><circle cx="110" cy="22" r="12" fill="#6b7280"/><circle cx="110" cy="22" r="6" fill="#e8e2d2"/><circle cx="150" cy="22" r="12" fill="#6b7280"/><circle cx="150" cy="22" r="6" fill="#e8e2d2"/></g>
+        <g fill="#1b2a40"><rect x="200" y="8" width="90" height="24" fill="#1b2a40"/><rect x="210" y="14" width="12" height="12" fill="#f5b301"/><rect x="228" y="14" width="12" height="12" fill="#f5b301"/><rect x="246" y="14" width="12" height="12" fill="#f5b301"/><rect x="264" y="14" width="12" height="12" fill="#f5b301"/></g>
+        <text x="14" y="38" font-family="Arial" font-size="9" font-weight="700" fill="#1b2a40">STEEL · $1.67bn</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">11</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>Tata Steel&rsquo;s $1.67bn India bet</h3>
+        <p>Takes a 26.4% stake in APL Apollo, India&rsquo;s biggest steel pipe maker; shares in both companies fall.</p>
+        <div class="by">EXCHANGE FILING · CNBC</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#8a5a2e">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#dbe7f2"/>
+        <polyline points="8,20 30,20 40,8 55,32 70,14 85,26 100,20 130,20 140,6 155,34 170,12 185,26 200,20 240,20 250,10 265,30 280,18 295,22 312,22" fill="none" stroke="#a8231a" stroke-width="2.5"/>
+        <g fill="#14665c"><path d="M120 40 L140 18 L160 40 Z"/><path d="M150 40 L175 24 L200 40 Z"/></g>
+        <text x="14" y="12" font-family="Arial" font-size="10" font-weight="700" fill="#1b2a40">M6.5 · 600 km DEEP</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">12</span><span class="tag cf">CONFIRMED</span></div>
+        <h3>Magnitude 6.5 quake shakes Vanuatu</h3>
+        <p>Deep quake at 02:40 UTC, ~600 km down; no damage and no tsunami threat, USGS green alert.</p>
+        <div class="by">USGS · PHIVOLCS</div>
+      </div>
+    </div>
+    <div class="item" style="border-top-color:#c08a1e">
+      <div class="art"><svg viewBox="0 0 320 40" preserveAspectRatio="xMidYMid slice">
+        <rect width="320" height="40" fill="#cfe0ee"/>
+        <path d="M0 28 Q80 24 160 28 T320 28 V40 H0 Z" fill="#24486e"/>
+        <g fill="#3a3a3a"><path d="M40 28 L48 12 L150 12 L158 28 Z"/><rect x="86" y="2" width="6" height="12"/><rect x="110" y="4" width="8" height="10"/><rect x="200" y="28" width="0" height="0"/></g>
+        <g fill="#3a3a3a"><path d="M190 28 L196 16 L270 16 L276 28 Z"/><rect x="226" y="8" width="6" height="10"/></g>
+        <g fill="#e86a17"><circle cx="120" cy="8" r="3"/><circle cx="240" cy="12" r="3"/></g>
+        <text x="14" y="38" font-family="Arial" font-size="9" font-weight="700" fill="#1b2a40">31 TANKERS</text>
+      </svg></div>
+      <div class="body">
+        <div><span class="no">13</span><span class="tag">REPORTED</span></div>
+        <h3>31 tankers gather off Hormuz</h3>
+        <p>Windward counts 31 tankers east of the Strait, carrying 4.9m barrels.</p>
+        <div class="by">WINDWARD · 08:27 UTC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="atlas">
+      <h2>WORLD MAP — MONDAY 23 NOVEMBER 2026</h2>
+      <svg viewBox="0 0 340 168">
+        <rect width="340" height="168" fill="#dbe7f2"/>
+        <g fill="#d3cdb8" stroke="#faf6ee" stroke-width="1">
+          <path d="M16,40 L52,16 L96,20 L112,38 L102,58 L84,72 L66,68 L44,74 L28,58 L12,48 Z"/>
+          <path d="M104,10 L126,8 L130,20 L112,24 Z"/>
+          <path d="M88,90 L106,86 L122,100 L116,124 L102,144 L92,130 L84,108 Z"/>
+          <path d="M160,26 L186,18 L196,32 L188,48 L172,52 L160,40 Z"/>
+          <path d="M162,58 L190,52 L204,68 L198,96 L182,116 L170,102 L158,78 Z"/>
+          <path d="M196,18 L284,12 L316,28 L320,48 L296,62 L272,68 L248,60 L226,66 L204,52 L196,36 Z"/>
+          <path d="M254,78 L284,74 L296,86 L278,94 L258,90 Z"/>
+          <path d="M280,110 L312,104 L320,122 L306,138 L284,132 Z"/>
+          <path d="M300,38 L308,34 L310,44 L302,48 Z"/>
+          <path d="M154,28 L162,24 L164,34 L156,38 Z"/>
+          <path d="M320,140 L328,136 L330,146 L322,150 Z"/>
+        </g>
+        <g font-family="Arial" font-size="7.5" font-weight="700" text-anchor="middle">
+          <g><circle cx="98" cy="48" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="98" y="50.5" fill="#1b2a40">1</text></g>
+          <g><circle cx="196" cy="66" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="196" y="68.5" fill="#1b2a40">2</text></g>
+          <g><circle cx="172" cy="46" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="172" y="48.5" fill="#1b2a40">3</text></g>
+          <g><circle cx="200" cy="36" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="200" y="38.5" fill="#1b2a40">4</text></g>
+          <g><circle cx="302" cy="50" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="302" y="52.5" fill="#1b2a40">6</text></g>
+          <g><circle cx="160" cy="32" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="160" y="34.5" fill="#1b2a40">7</text></g>
+          <g><circle cx="184" cy="22" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="184" y="24.5" fill="#1b2a40">8</text></g>
+          <g><circle cx="247" cy="54" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="247" y="56.5" fill="#1b2a40">11</text></g>
+          <g><circle cx="328" cy="100" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="328" y="102.5" fill="#1b2a40">12</text></g>
+          <g><circle cx="230" cy="58" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="230" y="60.5" fill="#1b2a40">13</text></g>
+          <g><circle cx="190" cy="52" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="190" y="54.5" fill="#1b2a40">18</text></g>
+          <g><circle cx="214" cy="82" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="214" y="84.5" fill="#1b2a40">20</text></g>
+          <g><circle cx="271" cy="90" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="271" y="92.5" fill="#1b2a40">31</text></g>
+          <g><circle cx="276" cy="51" r="7" fill="#fff" stroke="#1b2a40" stroke-width="1.2"/><text x="276" y="53.5" fill="#1b2a40">34</text></g>
+        </g>
+      </svg>
+      <div class="note">Pins show main locations; numbers match the stories. No pin: 5 (Moscow), 9 (orbit), 10 (Kyiv, see 4), 14–17 (Ukraine, see 4/10), 19 (see 2), 21–22 (Gulf, see 13), 23/25/26/35/36 (Europe, see 3/7), 24 (Zakarpattia), 27–29/32–33 (US/Brazil, see 1), 30 (Delhi, see 11), 28 (global markets).</div>
+    </div>
+    <div class="rest">
+      <h2>ALSO ON MONDAY 23 NOVEMBER — 23 MORE STORIES</h2>
+      <div class="cols">
+        <div class="col">
+          <div class="li"><b>14</b> Kerch Bridge: strikes on 16, 17 &amp; 19 Nov wrecked the arch; road shut, one rail track open. <i>· UKR officials</i></div>
+          <div class="li"><b>15</b> Novoshakhtinsk refinery hit overnight; Tatarstan pumping station burning. <i>· UKR General Staff</i></div>
+          <div class="li"><b>16</b> Russian drones hit Kharkiv districts, damaging homes and cars. <i>· Local officials</i></div>
+          <div class="li"><b>17</b> Kyiv open to four-way peace talks; envoys to Abu Dhabi after Nov 26. <i>· Zelenskyy</i></div>
+          <div class="li"><b>18</b> Poland: three objects were Russian Kh-101 missiles; a second drone entered its airspace. <i>· Polish officials</i></div>
+          <div class="li"><b>19</b> Libya calls the Benghazi strike &lsquo;tantamount to a declaration of war&rsquo;. <i>· Libyan officials</i> <span class="tag cl">CLAIM</span></div>
+          <div class="li"><b>20</b> UN and US condemn Sunday&rsquo;s strikes on Khartoum; 3 UN staff hurt. <i>· UN / US</i></div>
+          <div class="li"><b>21</b> Houthi media say a Saudi strike on a Hodeida telecom site kills 6&ndash;10, wounds 20+. <i>· Houthi media / AFP</i> <span class="tag cl">CLAIM</span></div>
+        </div>
+        <div class="col">
+          <div class="li"><b>22</b> Iran claims to hit ~10 &ldquo;violating&rdquo; tankers a day. <i>· Iranian officials</i> <span class="tag cl">CLAIM</span></div>
+          <div class="li"><b>23</b> Capita shares plunge ~70% as its boss quits after the civil-service pensions failure. <i>· BBC</i></div>
+          <div class="li"><b>24</b> Hungary&rsquo;s Magyar begins a Zakarpattia visit; to meet Zelenskyy. <i>· Reports</i></div>
+          <div class="li"><b>25</b> Rutte warns Europe against a separate force outside NATO. <i>· NATO</i></div>
+          <div class="li"><b>26</b> Russian strikes killed 534 civilians in Ukraine in October, 16 of them children. <i>· Reports</i></div>
+          <div class="li"><b>27</b> US energy exports hit records: LNG 30%, propane 70% of world trade. <i>· Kpler / EIA</i></div>
+          <div class="li"><b>28</b> Commodities: gold +2.9% to $3,661; Brent $89.34, &minus;3.5%. <i>· Market data</i></div>
+          <div class="li"><b>29</b> Brazil weighs a bill to enforce the public-sector salary ceiling. <i>· Rio Times</i></div>
+        </div>
+        <div class="col">
+          <div class="li"><b>30</b> Modi hosts Nepal&rsquo;s Shah in Delhi; talks on trade, energy, connectivity. <i>· MEA / ANI</i></div>
+          <div class="li"><b>31</b> Three dead, dozens missing after a candy factory fire in Serang, Indonesia. <i>· Indonesian officials</i></div>
+          <div class="li"><b>32</b> &lsquo;Sunrise on the Reaping&rsquo;: $120m at home, $225m worldwide in its opening weekend. <i>· Box Office Mojo</i></div>
+          <div class="li"><b>33</b> Tonight: Bengals at Commanders in Monday Night Football. <i>· NFL</i> <span class="tag pd">PENDING</span></div>
+          <div class="li"><b>34</b> Mystery MQ-25-like drone spotted at China&rsquo;s Pucheng site; 66-ft wingspan. <i>· Satellite imagery</i></div>
+          <div class="li"><b>35</b> Moscow weighs compulsory game permits and FSB access to player data. <i>· Russian media</i></div>
+          <div class="li"><b>36</b> Belgium&rsquo;s De Wever sees the king again, no budget deal; sets Dec 31 deadline. <i>· Reuters</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check">
+    <h2>DATE CHECK — READ THIS BEFORE YOU QUOTE US</h2>
+    <div class="first">Wires read to <b>21:30 UTC</b>, past the US market close. Every story above happened, or was first reported, on <b>Monday 23 November 2026</b>.</div>
+    <div class="left"><b>Left out on purpose</b> — big stories from other days: COP31 collapse (Sun 22 Nov) · Democrats&rsquo; 258 House seats (Sun) · Riemann proof certified (Sat 21) · Bayer $7.25bn Roundup deal (Fri 20) · <b>Nikkei&rsquo;s &minus;5.06% plunge (Fri 20; Tokyo shut Mon 23)</b> · Delta outage (Sun) · Márquez 8th MotoGP title (Sun) · Sparta II strike (Sat 21) · Bolsonaro in ICU (Sat). <b>Careful with dates:</b> the Benghazi strike happened Sun 22, confirmed Mon 23 · Kerch Bridge was hit 16–19 Nov, the damage was reported Mon 23 · a 12th Dymer victim died Tue 24 Nov, after our wires closed.</div>
+  </div>
+
+  <div class="foot">
+    <div class="keys"><b>REPORTED</b> — reported by wires or outlets &nbsp;·&nbsp; <b>CLAIM</b> — one side&rsquo;s account, labelled as such &nbsp;·&nbsp; <b>CONFIRMED</b> — officially confirmed or market data &nbsp;·&nbsp; <b>PENDING</b> — scheduled, not yet happened &nbsp;&nbsp;|&nbsp;&nbsp; Illustrations are original drawings, not photographs.</div>
+    <div class="sourceline">Sources: Reuters · AP · BBC · AFP · USGS · Windward · European Commission · UKR General Staff · Mediazona · company filings · market data · national officials. Made for the make.fun contest &ldquo;Sum up 23 November&rsquo;s world news in one image&rdquo;.</div>
+  </div>
+
+</div>
+</body>
+</html>
